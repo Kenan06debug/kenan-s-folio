@@ -1,0 +1,1876 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Noah Qudus Olayinka (Kenan) — Full-Stack & Frontend Developer</title>
+  
+  <!-- Typography & Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <style>
+    /* CSS Variables & Design Tokens */
+    :root {
+      --bg-body: #070b14;
+      --bg-surface: #0d1424;
+      --bg-surface-elevated: #131d33;
+      --bg-card: rgba(19, 29, 51, 0.7);
+      --border-subtle: rgba(255, 255, 255, 0.08);
+      --border-focus: rgba(56, 189, 248, 0.4);
+      --primary: #38bdf8;
+      --primary-hover: #0284c7;
+      --accent: #60a5fa;
+      --accent-glow: rgba(56, 189, 248, 0.15);
+      --emerald: #34d399;
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --text-dim: #64748b;
+      --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+      --radius-sm: 8px;
+      --radius-md: 14px;
+      --radius-lg: 20px;
+      --radius-full: 9999px;
+      --transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background-color: var(--bg-body);
+      color: var(--text-main);
+      font-family: var(--font-sans);
+      line-height: 1.6;
+      overflow-x: hidden;
+      background-image: 
+        radial-gradient(circle at 15% 10%, rgba(56, 189, 248, 0.07) 0%, transparent 40%),
+        radial-gradient(circle at 85% 85%, rgba(96, 165, 250, 0.05) 0%, transparent 45%);
+      background-attachment: fixed;
+    }
+
+    /* Container Utilities */
+    .container {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* Navigation Bar */
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
+      background: rgba(7, 11, 20, 0.85);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border-subtle);
+      transition: var(--transition);
+    }
+
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 72px;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      color: var(--text-main);
+      font-weight: 800;
+      font-size: 1.15rem;
+      letter-spacing: -0.02em;
+    }
+
+    .logo-badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 36px;
+      height: 36px;
+      background: linear-gradient(135deg, #0284c7, #38bdf8);
+      color: #fff;
+      font-family: var(--font-mono);
+      font-weight: 700;
+      font-size: 0.95rem;
+      border-radius: var(--radius-sm);
+      box-shadow: 0 0 20px rgba(56, 189, 248, 0.35);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+      list-style: none;
+    }
+
+    .nav-link {
+      text-decoration: none;
+      color: var(--text-muted);
+      font-size: 0.92rem;
+      font-weight: 500;
+      transition: var(--transition);
+      position: relative;
+    }
+
+    .nav-link:hover, .nav-link.active {
+      color: var(--text-main);
+    }
+
+    .nav-link.active::after {
+      content: '';
+      position: absolute;
+      bottom: -6px;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background: var(--primary);
+      border-radius: var(--radius-full);
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .btn-talk {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 20px;
+      background: rgba(56, 189, 248, 0.1);
+      color: var(--primary);
+      border: 1px solid rgba(56, 189, 248, 0.3);
+      border-radius: var(--radius-full);
+      font-size: 0.88rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: var(--transition);
+    }
+
+    .btn-talk:hover {
+      background: var(--primary);
+      color: #070b14;
+      box-shadow: 0 0 25px rgba(56, 189, 248, 0.4);
+      transform: translateY(-1px);
+    }
+
+    .menu-toggle {
+      display: none;
+      background: transparent;
+      border: none;
+      color: var(--text-main);
+      font-size: 1.4rem;
+      cursor: pointer;
+    }
+
+    /* Hero Section */
+    .hero {
+      padding-top: 150px;
+      padding-bottom: 90px;
+      position: relative;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 48px;
+      align-items: center;
+    }
+
+    .status-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 6px 14px;
+      background: rgba(52, 211, 153, 0.1);
+      border: 1px solid rgba(52, 211, 153, 0.25);
+      border-radius: var(--radius-full);
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--emerald);
+      margin-bottom: 22px;
+    }
+
+    .pulse-dot {
+      width: 8px;
+      height: 8px;
+      background: var(--emerald);
+      border-radius: 50%;
+      position: relative;
+    }
+
+    .pulse-dot::before {
+      content: '';
+      position: absolute;
+      top: -4px;
+      left: -4px;
+      right: -4px;
+      bottom: -4px;
+      background: rgba(52, 211, 153, 0.5);
+      border-radius: 50%;
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(0.9); opacity: 0.8; }
+      50% { transform: scale(1.8); opacity: 0; }
+      100% { transform: scale(0.9); opacity: 0; }
+    }
+
+    .hero-eyebrow {
+      font-family: var(--font-mono);
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: var(--primary);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+
+    .hero-title {
+      font-size: 3.25rem;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 1.15;
+      color: var(--text-main);
+      margin-bottom: 20px;
+    }
+
+    .hero-title .text-gradient {
+      background: linear-gradient(135deg, #f8fafc 30%, #38bdf8 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero-bio {
+      font-size: 1.1rem;
+      color: var(--text-muted);
+      line-height: 1.65;
+      margin-bottom: 32px;
+      max-width: 580px;
+    }
+
+    .hero-cta {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 40px;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 14px 28px;
+      background: linear-gradient(135deg, #0284c7, #38bdf8);
+      color: #04101e;
+      border: none;
+      border-radius: var(--radius-sm);
+      font-size: 0.95rem;
+      font-weight: 700;
+      text-decoration: none;
+      transition: var(--transition);
+      box-shadow: 0 4px 20px rgba(56, 189, 248, 0.35);
+      cursor: pointer;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 30px rgba(56, 189, 248, 0.5);
+    }
+
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 14px 24px;
+      background: rgba(255, 255, 255, 0.04);
+      color: var(--text-main);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-sm);
+      font-size: 0.95rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: var(--transition);
+    }
+
+    .btn-secondary:hover {
+      background: rgba(255, 255, 255, 0.08);
+      border-color: rgba(255, 255, 255, 0.2);
+      transform: translateY(-2px);
+    }
+
+    .hero-meta {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      padding-top: 24px;
+      border-top: 1px solid var(--border-subtle);
+    }
+
+    .social-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      border-radius: var(--radius-sm);
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: var(--transition);
+    }
+
+    .social-link:hover {
+      color: var(--primary);
+      border-color: var(--border-focus);
+      background: rgba(56, 189, 248, 0.08);
+      transform: translateY(-2px);
+    }
+
+    .meta-location {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--text-dim);
+      font-size: 0.85rem;
+      font-family: var(--font-mono);
+    }
+
+    /* Hero Code Card */
+    .terminal-card {
+      background: #090f1e;
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6), 0 0 30px rgba(56, 189, 248, 0.08);
+      overflow: hidden;
+    }
+
+    .terminal-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 18px;
+      background: #060b14;
+      border-bottom: 1px solid var(--border-subtle);
+    }
+
+    .terminal-dots {
+      display: flex;
+      gap: 8px;
+    }
+
+    .terminal-dot {
+      width: 11px;
+      height: 11px;
+      border-radius: 50%;
+    }
+
+    .dot-red { background: #ef4444; }
+    .dot-yellow { background: #eab308; }
+    .dot-green { background: #22c55e; }
+
+    .terminal-title {
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      color: var(--text-dim);
+    }
+
+    .terminal-body {
+      padding: 24px;
+      font-family: var(--font-mono);
+      font-size: 0.88rem;
+      line-height: 1.8;
+      overflow-x: auto;
+    }
+
+    .code-comment { color: #475569; }
+    .code-keyword { color: #f43f5e; font-weight: 600; }
+    .code-fn { color: #38bdf8; }
+    .code-str { color: #34d399; }
+    .code-prop { color: #cbd5e1; }
+    .code-num { color: #fbbf24; }
+
+    /* Section Headers */
+    .section {
+      padding: 100px 0;
+      position: relative;
+    }
+
+    .section-eyebrow {
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--primary);
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+      display: block;
+    }
+
+    .section-title {
+      font-size: 2.25rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      color: var(--text-main);
+      margin-bottom: 16px;
+    }
+
+    .section-desc {
+      color: var(--text-muted);
+      font-size: 1.05rem;
+      max-width: 620px;
+      line-height: 1.6;
+    }
+
+    /* About Section */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      margin-top: 48px;
+      align-items: start;
+    }
+
+    .about-text p {
+      color: var(--text-muted);
+      font-size: 1.05rem;
+      line-height: 1.7;
+      margin-bottom: 20px;
+    }
+
+    .about-highlights {
+      display: grid;
+      gap: 18px;
+    }
+
+    .highlight-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 22px;
+      transition: var(--transition);
+      display: flex;
+      gap: 18px;
+      align-items: flex-start;
+    }
+
+    .highlight-card:hover {
+      border-color: var(--border-focus);
+      background: var(--bg-surface-elevated);
+      transform: translateX(4px);
+    }
+
+    .highlight-icon {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      border-radius: var(--radius-sm);
+      background: rgba(56, 189, 248, 0.1);
+      color: var(--primary);
+      font-size: 1.25rem;
+      flex-shrink: 0;
+    }
+
+    .highlight-info h4 {
+      font-size: 1.05rem;
+      color: var(--text-main);
+      margin-bottom: 4px;
+    }
+
+    .highlight-info p {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      margin: 0;
+      line-height: 1.5;
+    }
+
+    /* Skills Section */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+      margin-top: 48px;
+    }
+
+    .skill-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 28px 24px;
+      transition: var(--transition);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .skill-card:hover {
+      border-color: var(--border-focus);
+      background: var(--bg-surface-elevated);
+      transform: translateY(-4px);
+      box-shadow: 0 16px 30px rgba(0, 0, 0, 0.4);
+    }
+
+    .skill-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 3px;
+      background: linear-gradient(90deg, transparent, var(--primary), transparent);
+      opacity: 0;
+      transition: var(--transition);
+    }
+
+    .skill-card:hover::before {
+      opacity: 1;
+    }
+
+    .skill-header {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 20px;
+    }
+
+    .skill-header i {
+      font-size: 1.4rem;
+      color: var(--primary);
+    }
+
+    .skill-header h3 {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--text-main);
+    }
+
+    .tag-cloud {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 12px;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-sm);
+      font-size: 0.82rem;
+      font-weight: 500;
+      color: var(--text-muted);
+      font-family: var(--font-mono);
+      transition: var(--transition);
+    }
+
+    .tag:hover {
+      background: rgba(56, 189, 248, 0.08);
+      color: var(--primary);
+      border-color: var(--border-focus);
+    }
+
+    /* Projects Section */
+    .filter-bar {
+      display: flex;
+      gap: 12px;
+      margin-top: 36px;
+      margin-bottom: 32px;
+      flex-wrap: wrap;
+    }
+
+    .filter-btn {
+      padding: 8px 18px;
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      color: var(--text-muted);
+      border-radius: var(--radius-full);
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .filter-btn:hover, .filter-btn.active {
+      color: var(--text-main);
+      background: rgba(56, 189, 248, 0.1);
+      border-color: var(--border-focus);
+    }
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 32px;
+    }
+
+    .project-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: var(--transition);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    }
+
+    .project-card:hover {
+      border-color: var(--border-focus);
+      transform: translateY(-4px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5), 0 0 25px rgba(56, 189, 248, 0.1);
+    }
+
+    .project-preview {
+      height: 200px;
+      background: #080e1b;
+      border-bottom: 1px solid var(--border-subtle);
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .project-preview-mock {
+      background: #0d1527;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      border-radius: var(--radius-sm);
+      height: 100%;
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .mock-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-bottom: 8px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .mock-chip {
+      font-size: 0.75rem;
+      font-family: var(--font-mono);
+      color: var(--primary);
+    }
+
+    .mock-body {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+      height: 100%;
+    }
+
+    .mock-box {
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px dashed rgba(255, 255, 255, 0.06);
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.72rem;
+      color: var(--text-dim);
+    }
+
+    .project-content {
+      padding: 28px;
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+    }
+
+    .project-badge-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 12px;
+    }
+
+    .project-cat {
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--primary);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .project-status {
+      font-size: 0.75rem;
+      font-weight: 600;
+      padding: 2px 8px;
+      border-radius: var(--radius-full);
+      background: rgba(52, 211, 153, 0.1);
+      color: var(--emerald);
+      border: 1px solid rgba(52, 211, 153, 0.2);
+    }
+
+    .project-title {
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--text-main);
+      margin-bottom: 10px;
+    }
+
+    .project-desc {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+      margin-bottom: 20px;
+      flex-grow: 1;
+    }
+
+    .project-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 24px;
+    }
+
+    .project-actions {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding-top: 16px;
+      border-top: 1px solid var(--border-subtle);
+    }
+
+    .action-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.88rem;
+      font-weight: 600;
+      text-decoration: none;
+      color: var(--text-muted);
+      transition: var(--transition);
+    }
+
+    .action-btn:hover {
+      color: var(--primary);
+    }
+
+    /* Experience / Journey Timeline */
+    .timeline {
+      position: relative;
+      margin-top: 48px;
+      padding-left: 32px;
+    }
+
+    .timeline::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 7px;
+      width: 2px;
+      height: 100%;
+      background: linear-gradient(180deg, var(--primary), rgba(56, 189, 248, 0.1));
+    }
+
+    .timeline-item {
+      position: relative;
+      margin-bottom: 40px;
+    }
+
+    .timeline-item:last-child {
+      margin-bottom: 0;
+    }
+
+    .timeline-marker {
+      position: absolute;
+      left: -32px;
+      top: 4px;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: var(--bg-body);
+      border: 3px solid var(--primary);
+      box-shadow: 0 0 10px rgba(56, 189, 248, 0.4);
+    }
+
+    .timeline-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 26px 28px;
+      transition: var(--transition);
+    }
+
+    .timeline-card:hover {
+      border-color: var(--border-focus);
+      transform: translateX(4px);
+    }
+
+    .timeline-meta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 8px;
+    }
+
+    .timeline-role {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--text-main);
+    }
+
+    .timeline-period {
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      color: var(--primary);
+      padding: 3px 10px;
+      background: rgba(56, 189, 248, 0.08);
+      border-radius: var(--radius-full);
+      border: 1px solid rgba(56, 189, 248, 0.2);
+    }
+
+    .timeline-org {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--accent);
+      margin-bottom: 12px;
+    }
+
+    .timeline-desc {
+      font-size: 0.92rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    /* Contact Section */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: 48px;
+      margin-top: 48px;
+    }
+
+    .contact-card-sidebar {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .email-quick-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 26px;
+      position: relative;
+    }
+
+    .email-quick-card h4 {
+      font-size: 1rem;
+      color: var(--text-main);
+      margin-bottom: 8px;
+    }
+
+    .email-quick-card p {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      margin-bottom: 18px;
+    }
+
+    .email-box {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: #080e1b;
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-sm);
+      padding: 10px 14px;
+    }
+
+    .email-text {
+      font-family: var(--font-mono);
+      font-size: 0.88rem;
+      color: var(--primary);
+      user-select: all;
+    }
+
+    .copy-btn {
+      background: rgba(56, 189, 248, 0.1);
+      border: 1px solid rgba(56, 189, 248, 0.3);
+      color: var(--primary);
+      padding: 6px 12px;
+      border-radius: var(--radius-sm);
+      font-size: 0.78rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: var(--transition);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .copy-btn:hover {
+      background: var(--primary);
+      color: #04101e;
+    }
+
+    .contact-form-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 32px;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .form-label {
+      display: block;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      margin-bottom: 8px;
+    }
+
+    .form-input, .form-textarea {
+      width: 100%;
+      padding: 12px 16px;
+      background: #090e1b;
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-sm);
+      color: var(--text-main);
+      font-family: var(--font-sans);
+      font-size: 0.95rem;
+      transition: var(--transition);
+    }
+
+    .form-input:focus, .form-textarea:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 15px rgba(56, 189, 248, 0.2);
+    }
+
+    .form-textarea {
+      resize: vertical;
+      min-height: 130px;
+    }
+
+    /* Toast Notification */
+    .toast {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      background: #0d1a30;
+      border: 1px solid var(--primary);
+      border-radius: var(--radius-sm);
+      padding: 14px 22px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      color: var(--text-main);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+      transform: translateY(100px);
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      z-index: 2000;
+    }
+
+    .toast.show {
+      transform: translateY(0);
+      opacity: 1;
+      visibility: visible;
+    }
+
+    /* Footer */
+    .footer {
+      padding: 48px 0;
+      border-top: 1px solid var(--border-subtle);
+      background: #060a12;
+    }
+
+    .footer-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    .footer-copy {
+      font-size: 0.88rem;
+      color: var(--text-dim);
+    }
+
+    .back-to-top {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      padding: 8px 16px;
+      border-radius: var(--radius-full);
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      font-weight: 500;
+      text-decoration: none;
+      transition: var(--transition);
+    }
+
+    .back-to-top:hover {
+      color: var(--primary);
+      border-color: var(--border-focus);
+    }
+
+    /* Responsive Breakpoints */
+    @media (max-width: 992px) {
+      .hero-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+      .about-grid {
+        grid-template-columns: 1fr;
+        gap: 36px;
+      }
+      .skills-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .projects-grid {
+        grid-template-columns: 1fr;
+      }
+      .contact-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none;
+        position: absolute;
+        top: 72px;
+        left: 0;
+        width: 100%;
+        background: #090e1b;
+        border-bottom: 1px solid var(--border-subtle);
+        flex-direction: column;
+        padding: 24px;
+        gap: 18px;
+      }
+      .nav-links.active {
+        display: flex;
+      }
+      .menu-toggle {
+        display: block;
+      }
+      .hero-title {
+        font-size: 2.4rem;
+      }
+      .skills-grid {
+        grid-template-columns: 1fr;
+      }
+      .hero-meta {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <nav class="navbar" id="navbar">
+    <div class="container nav-inner">
+      <a href="#home" class="logo">
+        <span class="logo-badge">KQ</span>
+        <span>Noah Qudus<span style="color: var(--primary)"> (Kenan)</span></span>
+      </a>
+
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#home" class="nav-link active">Home</a></li>
+        <li><a href="#about" class="nav-link">About</a></li>
+        <li><a href="#skills" class="nav-link">Skills</a></li>
+        <li><a href="#projects" class="nav-link">Projects</a></li>
+        <li><a href="#experience" class="nav-link">Experience</a></li>
+        <li><a href="#contact" class="nav-link">Contact</a></li>
+      </ul>
+
+      <div class="nav-actions">
+        <a href="https://wa.me/2349153232839?text=Hello%20Noah%20Qudus,%20I%20saw%20your%20portfolio%20and%20would%20like%20to%20connect!" target="_blank" rel="noopener noreferrer" class="btn-talk">
+          <i class="fa-brands fa-whatsapp" style="font-size: 1.1rem; color: #25d366;"></i>
+          <span>Let's Talk</span>
+        </a>
+        <button class="menu-toggle" id="menuToggle" aria-label="Toggle Navigation">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero" id="home">
+    <div class="container hero-grid">
+      <div class="hero-content">
+        <div class="status-pill">
+          <span class="pulse-dot"></span>
+          <span>Open to Frontend, Full-Stack &amp; Web Engineering Roles</span>
+        </div>
+
+        <p class="hero-eyebrow">Noah Qudus Olayinka (Kenan) · Lagos, Nigeria</p>
+        <h1 class="hero-title">
+          Crafting pixel-perfect <span class="text-gradient">frontend interfaces</span> &amp; resilient web applications.
+        </h1>
+        
+        <p class="hero-bio">
+          Frontend &amp; Full-Stack Software Developer blending mathematical precision with modern UI engineering. I specialize in crafting intuitive, accessible, and high-performance digital interfaces with React, JavaScript (ES6+), Tailwind, and Python backends.
+        </p>
+
+        <div class="hero-cta">
+          <a href="#projects" class="btn-primary">
+            <span>Explore My Work</span>
+            <i class="fa-solid fa-arrow-right"></i>
+          </a>
+          <a href="https://wa.me/2349153232839?text=Hello%20Noah%20Qudus,%20I%20saw%20your%20portfolio%20and%20would%20like%20to%20connect!" target="_blank" rel="noopener noreferrer" class="btn-secondary" style="border-color: rgba(37, 211, 102, 0.4); color: #86efac;">
+            <i class="fa-brands fa-whatsapp" style="font-size: 1.1rem; color: #25d366;"></i>
+            <span>Chat on WhatsApp</span>
+          </a>
+        </div>
+
+        <div class="hero-meta">
+          <div style="display: flex; gap: 10px;">
+            <a href="https://github.com/Kenan06debug" target="_blank" rel="noopener noreferrer" class="social-link" title="GitHub Profile">
+              <i class="fa-brands fa-github"></i>
+            </a>
+            <a href="https://www.linkedin.com/in/noah-qudus-olayinka" target="_blank" rel="noopener noreferrer" class="social-link" title="LinkedIn Profile">
+              <i class="fa-brands fa-linkedin-in" style="color: #0a66c2;"></i>
+            </a>
+            <a href="https://wa.me/2349153232839?text=Hello%20Noah%20Qudus,%20I%20saw%20your%20portfolio%20and%20would%20like%20to%20connect!" target="_blank" rel="noopener noreferrer" class="social-link" title="WhatsApp Message">
+              <i class="fa-brands fa-whatsapp" style="color: #25d366;"></i>
+            </a>
+            <a href="mailto:noahqudus64@gmail.com" class="social-link" title="Send Email">
+              <i class="fa-regular fa-envelope"></i>
+            </a>
+          </div>
+          <div class="meta-location">
+            <i class="fa-solid fa-location-dot" style="color: var(--primary);"></i>
+            <span>Lagos, Nigeria · (+234 915 323 2839)</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Hero Code Visual Card -->
+      <div class="terminal-card">
+        <div class="terminal-header">
+          <div class="terminal-dots">
+            <span class="terminal-dot dot-red"></span>
+            <span class="terminal-dot dot-yellow"></span>
+            <span class="terminal-dot dot-green"></span>
+          </div>
+          <div class="terminal-title">noah_qudus.py</div>
+          <div style="font-size: 0.72rem; color: var(--emerald); font-family: var(--font-mono);">
+            <i class="fa-solid fa-circle-check"></i> Active
+          </div>
+        </div>
+        <div class="terminal-body">
+          <p><span class="code-comment"># Developer snapshot &amp; primary workspace</span></p>
+          <p><span class="code-keyword">class</span> <span class="code-fn">SoftwareEngineer</span>:</p>
+          <p>&nbsp;&nbsp;name = <span class="code-str">"Noah Qudus Olayinka"</span></p>
+          <p>&nbsp;&nbsp;alias = <span class="code-str">"Kenan"</span></p>
+          <p>&nbsp;&nbsp;primary_editor = <span class="code-str">"Visual Studio Code (VS Code)"</span></p>
+          <p>&nbsp;&nbsp;typesetting_engine = <span class="code-str">"LaTeX (TeX)"</span></p>
+          <p>&nbsp;&nbsp;specialties = [<span class="code-str">"Frontend Engineering"</span>, <span class="code-str">"Full-Stack Web"</span>, <span class="code-str">"Mathematical Typesetting"</span>]</p>
+          <p>&nbsp;&nbsp;internships = [</p>
+          <p>&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-str">"Baselink Services Limited (Frontend)"</span>,</p>
+          <p>&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-str">"Saiket Systems (Frontend)"</span>,</p>
+          <p>&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-str">"HiiT Plc (Software/SIWES)"</span></p>
+          <p>&nbsp;&nbsp;]</p>
+          <p>&nbsp;&nbsp;github = <span class="code-str">"Kenan06debug"</span></p>
+          <p>&nbsp;&nbsp;linkedin = <span class="code-str">"noah-qudus-olayinka"</span></p>
+          <p>&nbsp;&nbsp;whatsapp = <span class="code-str">"+2349153232839"</span></p>
+          <p>&nbsp;&nbsp;stack = [</p>
+          <p>&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-str">"VS Code &amp; LaTeX"</span>,</p>
+          <p>&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-str">"HTML5, CSS3, JavaScript (ES6+), React"</span>,</p>
+          <p>&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-str">"Bootstrap 5, Responsive Design"</span>,</p>
+          <p>&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-str">"Python, Flask &amp; SQLite3"</span>,</p>
+          <p>&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-str">"Git &amp; GitHub"</span></p>
+          <p>&nbsp;&nbsp;]</p>
+          <br>
+          <p>&nbsp;&nbsp;<span class="code-keyword">def</span> <span class="code-fn">deliver_solution</span>(self):</p>
+          <p>&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-keyword">return</span> {</p>
+          <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-prop">"clean_code"</span>: <span class="code-keyword">True</span>,</p>
+          <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-prop">"built_in_vscode"</span>: <span class="code-keyword">True</span>,</p>
+          <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-prop">"latex_documented"</span>: <span class="code-keyword">True</span></p>
+          <p>&nbsp;&nbsp;&nbsp;&nbsp;}</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section class="section" id="about">
+    <div class="container">
+      <span class="section-eyebrow">01 / A Little About Me</span>
+      <h2 class="section-title">Design-conscious frontend developer &amp; logical builder.</h2>
+      <p class="section-desc">
+        A synthesis of creative UI aesthetics, frontend precision, and clean code crafted with VS Code and LaTeX.
+      </p>
+
+      <div class="about-grid">
+        <div class="about-text">
+          <p>
+            My name is <strong>Noah Qudus Olayinka (Kenan)</strong>. I am a frontend and web developer based in Lagos, Nigeria. What distinguishes my work is the synergy between mathematical analytical thinking and an eye for clean, human-centered user interface design.
+          </p>
+          <p>
+            Through frontend developer internships at <strong>Baselink Services Limited</strong> and <strong>Saiket Systems</strong>, alongside my practical software attachment at <strong>HiiT Plc</strong>, I have honed the craft of building responsive, accessible, and fast web experiences directly inside <strong>VS Code</strong>. I write clean, semantic HTML5, expressive modern CSS3/Bootstrap layouts, component-driven interfaces in React, and modular ES6+ JavaScript. For mathematical proofs, technical documentation, and academic research papers, my tool of choice is strictly <strong>LaTeX</strong>.
+          </p>
+          <p>
+            During my SIWES industrial training at <strong>HiiT Plc</strong>, I worked within IT support and software training facilitation. Seeing the friction of manual paper forms, I built the <strong>HiiT Course Enrollment &amp; Student Intake System (HES)</strong>—combining an intuitive, mobile-first frontend with a secure Python (Flask) and SQLite persistence layer.
+          </p>
+          <div style="display: flex; gap: 14px; margin-top: 28px;">
+            <a href="https://wa.me/2349153232839?text=Hello%20Noah%20Qudus,%20I%20saw%20your%20portfolio%20and%20would%20like%20to%20connect!" target="_blank" rel="noopener noreferrer" class="btn-primary" style="padding: 12px 22px; font-size: 0.9rem; background: linear-gradient(135deg, #059669, #10b981); box-shadow: 0 4px 20px rgba(16, 185, 129, 0.35);">
+              <i class="fa-brands fa-whatsapp"></i>
+              <span>Chat on WhatsApp</span>
+            </a>
+            <a href="#projects" class="btn-secondary" style="padding: 12px 20px; font-size: 0.9rem;">
+              <span>View Projects</span>
+            </a>
+          </div>
+        </div>
+
+        <div class="about-highlights">
+          <div class="highlight-card">
+            <div class="highlight-icon">
+              <i class="fa-solid fa-code"></i>
+            </div>
+            <div class="highlight-info">
+              <h4>VS Code Centric Development</h4>
+              <p>Writing all web applications, scripts, and responsive interfaces natively in Visual Studio Code with efficient developer workflows and Git tracking.</p>
+            </div>
+          </div>
+
+          <div class="highlight-card">
+            <div class="highlight-icon">
+              <i class="fa-solid fa-square-root-variable"></i>
+            </div>
+            <div class="highlight-info">
+              <h4>LaTeX Scientific Typesetting</h4>
+              <p>Authoring comprehensive academic reports, mathematical documentation, and technical slide presentations exclusively using LaTeX.</p>
+            </div>
+          </div>
+
+          <div class="highlight-card">
+            <div class="highlight-icon">
+              <i class="fa-solid fa-layer-group"></i>
+            </div>
+            <div class="highlight-info">
+              <h4>Full-Stack &amp; Frontend Craft</h4>
+              <p>Building cohesive web applications combining fluid frontend interfaces with secure, lightweight Python (Flask) and SQLite architectures.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Skills / Toolkit Section -->
+  <section class="section" id="skills" style="background: rgba(13, 20, 36, 0.4);">
+    <div class="container">
+      <span class="section-eyebrow">02 / My Toolkit</span>
+      <h2 class="section-title">Skills &amp; Technologies</h2>
+      <p class="section-desc">
+        A focused environment centered strictly around VS Code, LaTeX, and core modern web technologies.
+      </p>
+
+      <div class="skills-grid">
+        <!-- Editors & Documentation -->
+        <div class="skill-card">
+          <div class="skill-header">
+            <i class="fa-solid fa-pen-nib"></i>
+            <h3>Editors &amp; Typesetting</h3>
+          </div>
+          <div class="tag-cloud">
+            <span class="tag"><i class="fa-solid fa-code"></i> Visual Studio Code</span>
+            <span class="tag"><i class="fa-solid fa-square-root-variable"></i> LaTeX (TeX)</span>
+            <span class="tag">pdfLaTeX</span>
+            <span class="tag">VS Code Extensions</span>
+            <span class="tag">LaTeX Math Formulae</span>
+            <span class="tag">Beamer Presentations</span>
+          </div>
+        </div>
+
+        <!-- Frontend Development -->
+        <div class="skill-card">
+          <div class="skill-header">
+            <i class="fa-solid fa-laptop-code"></i>
+            <h3>Frontend Craft</h3>
+          </div>
+          <div class="tag-cloud">
+            <span class="tag"><i class="fa-brands fa-html5"></i> HTML5</span>
+            <span class="tag"><i class="fa-brands fa-css3-alt"></i> CSS3</span>
+            <span class="tag"><i class="fa-brands fa-js"></i> JavaScript (ES6+)</span>
+            <span class="tag"><i class="fa-brands fa-react"></i> React</span>
+            <span class="tag"><i class="fa-brands fa-bootstrap"></i> Bootstrap 5</span>
+            <span class="tag">Responsive Web Design</span>
+            <span class="tag">DOM Manipulation</span>
+          </div>
+        </div>
+
+        <!-- Backend & Databases -->
+        <div class="skill-card">
+          <div class="skill-header">
+            <i class="fa-solid fa-cubes"></i>
+            <h3>Backend &amp; DB</h3>
+          </div>
+          <div class="tag-cloud">
+            <span class="tag"><i class="fa-brands fa-python"></i> Python</span>
+            <span class="tag">Flask</span>
+            <span class="tag">SQLite3</span>
+            <span class="tag">Jinja2 Engine</span>
+            <span class="tag">Session Auth</span>
+            <span class="tag">CRUD Pipelines</span>
+          </div>
+        </div>
+
+        <!-- Version Control & Deployment -->
+        <div class="skill-card">
+          <div class="skill-header">
+            <i class="fa-solid fa-code-branch"></i>
+            <h3>Version Control</h3>
+          </div>
+          <div class="tag-cloud">
+            <span class="tag"><i class="fa-brands fa-git-alt"></i> Git</span>
+            <span class="tag"><i class="fa-brands fa-github"></i> GitHub</span>
+            <span class="tag">Git Bash</span>
+            <span class="tag">Vercel Deployment</span>
+            <span class="tag">Command Line / CLI</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects Section -->
+  <section class="section" id="projects">
+    <div class="container">
+      <span class="section-eyebrow">03 / Selected Work</span>
+      <h2 class="section-title">Featured Projects &amp; Systems</h2>
+      <p class="section-desc">
+        Responsive frontend experiences, full-stack portals, and LaTeX mathematical documentation engineered in VS Code.
+      </p>
+
+      <div class="filter-bar">
+        <button class="filter-btn active" data-filter="all">All Projects</button>
+        <button class="filter-btn" data-filter="web">Full-Stack Web</button>
+        <button class="filter-btn" data-filter="frontend">Frontend &amp; UI</button>
+        <button class="filter-btn" data-filter="latex">LaTeX &amp; Docs</button>
+      </div>
+
+      <div class="projects-grid">
+        <!-- Project 1: HiiT Portal -->
+        <div class="project-card" data-category="web">
+          <div class="project-preview">
+            <div class="project-preview-mock">
+              <div class="mock-header">
+                <span class="mock-chip"><i class="fa-solid fa-graduation-cap"></i> HiiT Training Portal</span>
+                <span style="font-size: 0.7rem; color: var(--text-dim);">Live Database</span>
+              </div>
+              <div class="mock-body">
+                <div class="mock-box"><i class="fa-solid fa-users"></i>&nbsp;Trainees</div>
+                <div class="mock-box"><i class="fa-solid fa-book-open"></i>&nbsp;Courses</div>
+                <div class="mock-box"><i class="fa-solid fa-shield-halved"></i>&nbsp;Staff Auth</div>
+              </div>
+            </div>
+          </div>
+          <div class="project-content">
+            <div class="project-badge-row">
+              <span class="project-cat">Full-Stack Web App</span>
+              <span class="project-status">Production Ready</span>
+            </div>
+            <h3 class="project-title">HiiT Training &amp; Enrollment Portal (HES)</h3>
+            <p class="project-desc">
+              A comprehensive student intake management system designed in VS Code during my SIWES attachment at HiiT Plc. Features public course catalog browsing, trainee registration, authenticated staff dashboard, relational SQLite join queries, and real-time admission status toggles.
+            </p>
+            <div class="project-tags">
+              <span class="tag">Python</span>
+              <span class="tag">Flask</span>
+              <span class="tag">SQLite3</span>
+              <span class="tag">Bootstrap 5</span>
+              <span class="tag">VS Code</span>
+            </div>
+            <div class="project-actions">
+              <a href="https://github.com/Kenan06debug/hiit-enrollment-portal" target="_blank" class="action-btn">
+                <i class="fa-brands fa-github"></i>
+                <span>Source Code</span>
+              </a>
+              <a href="https://hiit-enrollment-portal.vercel.app" target="_blank" class="action-btn" style="color: var(--primary);">
+                <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                <span>Live Portal</span>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 2: LaTeX Mathematical & Technical Documentation Engine -->
+        <div class="project-card" data-category="latex">
+          <div class="project-preview">
+            <div class="project-preview-mock">
+              <div class="mock-header">
+                <span class="mock-chip"><i class="fa-solid fa-square-root-variable"></i> LaTeX Typesetting</span>
+                <span style="font-size: 0.7rem; color: var(--emerald);">TeX Engine</span>
+              </div>
+              <div class="mock-body">
+                <div class="mock-box"><i class="fa-solid fa-file-pdf"></i>&nbsp;PDF Typeset</div>
+                <div class="mock-box"><i class="fa-solid fa-superscript"></i>&nbsp;Math Logic</div>
+                <div class="mock-box"><i class="fa-solid fa-table"></i>&nbsp;TeX Tables</div>
+              </div>
+            </div>
+          </div>
+          <div class="project-content">
+            <div class="project-badge-row">
+              <span class="project-cat">Typesetting &amp; Mathematics</span>
+              <span class="project-status">Documented</span>
+            </div>
+            <h3 class="project-title">LaTeX Academic &amp; Technical Report Suite</h3>
+            <p class="project-desc">
+              Comprehensive institutional defense reports, mathematical algorithm proofs, and technical documentation prepared strictly in LaTeX. Employs clean TeX packages for tabular formatting, algorithm environments, and structured cross-referencing.
+            </p>
+            <div class="project-tags">
+              <span class="tag">LaTeX</span>
+              <span class="tag">TeX</span>
+              <span class="tag">VS Code</span>
+              <span class="tag">Mathematical Logic</span>
+              <span class="tag">PDF Generation</span>
+            </div>
+            <div class="project-actions">
+              <a href="#contact" class="action-btn">
+                <i class="fa-solid fa-file-lines"></i>
+                <span>Request Sample TeX</span>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 3: Interactive Frontend Web Suite -->
+        <div class="project-card" data-category="frontend">
+          <div class="project-preview">
+            <div class="project-preview-mock">
+              <div class="mock-header">
+                <span class="mock-chip"><i class="fa-solid fa-desktop"></i> Frontend UI Suite</span>
+                <span style="font-size: 0.7rem; color: var(--primary);">Responsive UI</span>
+              </div>
+              <div class="mock-body">
+                <div class="mock-box"><i class="fa-solid fa-mobile-screen"></i>&nbsp;Mobile First</div>
+                <div class="mock-box"><i class="fa-solid fa-palette"></i>&nbsp;Dark Mode</div>
+                <div class="mock-box"><i class="fa-solid fa-bolt"></i>&nbsp;Fast Load</div>
+              </div>
+            </div>
+          </div>
+          <div class="project-content">
+            <div class="project-badge-row">
+              <span class="project-cat">Frontend &amp; UI Engineering</span>
+              <span class="project-status">Interactive</span>
+            </div>
+            <h3 class="project-title">Responsive Web Interfaces &amp; Portal UI</h3>
+            <p class="project-desc">
+              Custom responsive frontend prototypes, landing pages, and interactive UI systems engineered in VS Code using semantic HTML5, modern CSS3, and ES6+ JavaScript. Features fluid responsive breakpoints, accessible interactive controls, dark-mode palettes, and modern typography.
+            </p>
+            <div class="project-tags">
+              <span class="tag">HTML5</span>
+              <span class="tag">CSS3</span>
+              <span class="tag">JavaScript (ES6+)</span>
+              <span class="tag">Bootstrap 5</span>
+              <span class="tag">VS Code</span>
+            </div>
+            <div class="project-actions">
+              <a href="#contact" class="action-btn">
+                <i class="fa-solid fa-eye"></i>
+                <span>Explore Showcase</span>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 4: Database-Driven Portal Utilities -->
+        <div class="project-card" data-category="web">
+          <div class="project-preview">
+            <div class="project-preview-mock">
+              <div class="mock-header">
+                <span class="mock-chip"><i class="fa-solid fa-database"></i> SQLite Data Engine</span>
+                <span style="font-size: 0.7rem; color: var(--emerald);">ACID Safe</span>
+              </div>
+              <div class="mock-body">
+                <div class="mock-box"><i class="fa-solid fa-diagram-project"></i>&nbsp;1:N Schema</div>
+                <div class="mock-box"><i class="fa-solid fa-lock"></i>&nbsp;Security</div>
+                <div class="mock-box"><i class="fa-solid fa-arrows-rotate"></i>&nbsp;CRUD</div>
+              </div>
+            </div>
+          </div>
+          <div class="project-content">
+            <div class="project-badge-row">
+              <span class="project-cat">Database &amp; Systems</span>
+              <span class="project-status">Deployed Tool</span>
+            </div>
+            <h3 class="project-title">Relational SQL Intake &amp; Query Pipeline</h3>
+            <p class="project-desc">
+              Server-side relational schema and data retrieval pipelines developed in Python and SQLite3. Features parameterized query execution to prevent SQL injection, dynamic status updates, and join operations for institutional reporting.
+            </p>
+            <div class="project-tags">
+              <span class="tag">Python</span>
+              <span class="tag">SQLite3</span>
+              <span class="tag">SQL Queries</span>
+              <span class="tag">VS Code</span>
+            </div>
+            <div class="project-actions">
+              <a href="#contact" class="action-btn">
+                <i class="fa-regular fa-envelope"></i>
+                <span>Request Case Study</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Experience / Journey Section -->
+  <section class="section" id="experience" style="background: rgba(13, 20, 36, 0.4);">
+    <div class="container">
+      <span class="section-eyebrow">04 / Work Experience &amp; Internships</span>
+      <h2 class="section-title">Experience &amp; Internships</h2>
+      <p class="section-desc">
+        Hands-on industry internships in frontend engineering and practical full-stack system development.
+      </p>
+
+      <div class="timeline">
+        <!-- Item 1: Baselink Services Limited -->
+        <div class="timeline-item">
+          <span class="timeline-marker"></span>
+          <div class="timeline-card">
+            <div class="timeline-meta">
+              <span class="timeline-role">Frontend Developer Intern</span>
+              <span class="timeline-period">INTERNSHIP</span>
+            </div>
+            <div class="timeline-org">BASELINK SERVICES LIMITED · Lagos, Nigeria</div>
+            <p class="timeline-desc">
+              Built responsive, client-facing web interfaces using HTML5, CSS3, JavaScript (ES6+), and Bootstrap 5 in VS Code. Focused on optimizing user interaction flows, ensuring cross-browser compatibility across mobile and desktop viewports, and collaborating closely with backend engineers to integrate structured data endpoints into dynamic UI templates.
+            </p>
+          </div>
+        </div>
+
+        <!-- Item 2: Saiket Systems -->
+        <div class="timeline-item">
+          <span class="timeline-marker"></span>
+          <div class="timeline-card">
+            <div class="timeline-meta">
+              <span class="timeline-role">Frontend Developer Intern</span>
+              <span class="timeline-period">INTERNSHIP</span>
+            </div>
+            <div class="timeline-org">SAIKET SYSTEMS · Lagos, Nigeria</div>
+            <p class="timeline-desc">
+              Developed modern, interactive user interface modules and component structures using React and vanilla JavaScript. Designed responsive grid systems, styled accessible navigation systems, maintained frontend assets, and performed continuous version control and code collaboration using Git and GitHub within Visual Studio Code.
+            </p>
+          </div>
+        </div>
+
+        <!-- Item 3: HiiT Plc -->
+        <div class="timeline-item">
+          <span class="timeline-marker"></span>
+          <div class="timeline-card">
+            <div class="timeline-meta">
+              <span class="timeline-role">Digital Learning Facilitator &amp; Student Portal Developer</span>
+              <span class="timeline-period">SIWES ATTACHMENT</span>
+            </div>
+            <div class="timeline-org">HiiT Plc · Lagos, Nigeria</div>
+            <p class="timeline-desc">
+              Provided technical and lab support for student IT certification training programs (Python, CCNA, Web Development). Observed front-desk enrollment workflows, analyzed registration friction points, and conceptualized, architected, and deployed the HiiT Course Enrollment &amp; Intake System (HES) using VS Code, Flask, and SQLite3.
+            </p>
+          </div>
+        </div>
+
+        <!-- Item 4: LASU -->
+        <div class="timeline-item">
+          <span class="timeline-marker"></span>
+          <div class="timeline-card">
+            <div class="timeline-meta">
+              <span class="timeline-role">Computer Science &amp; Mathematical Studies</span>
+              <span class="timeline-period">UNDERGRADUATE / DEGREE</span>
+            </div>
+            <div class="timeline-org">Lagos State University (LASU)</div>
+            <p class="timeline-desc">
+              Rigorous coursework covering algorithms, relational database design, data structures, software engineering, numerical analysis, and applied mathematics. Documented technical reports and computational studies using LaTeX.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section class="section" id="contact">
+    <div class="container">
+      <span class="section-eyebrow">05 / Make Something Good</span>
+      <h2 class="section-title">Let's build something exceptional together.</h2>
+      <p class="section-desc">
+        Have a project idea, an engineering opportunity, or need an automated solution? Feel free to reach out.
+      </p>
+
+      <div class="contact-grid">
+        <div class="contact-card-sidebar">
+          <!-- WhatsApp Direct Card -->
+          <div class="email-quick-card" style="border-color: rgba(37, 211, 102, 0.3); background: rgba(13, 29, 24, 0.5);">
+            <h4 style="display: flex; align-items: center; gap: 8px; color: #86efac;">
+              <i class="fa-brands fa-whatsapp" style="font-size: 1.25rem; color: #25d366;"></i>
+              <span>WhatsApp Direct</span>
+            </h4>
+            <p>Connect instantly with Noah Qudus on WhatsApp for fast response and real-time collaboration:</p>
+            <a href="https://wa.me/2349153232839?text=Hello%20Noah%20Qudus,%20I%20saw%20your%20portfolio%20and%20would%20like%20to%20connect!" target="_blank" rel="noopener noreferrer" class="btn-primary" style="width: 100%; justify-content: center; background: #25d366; color: #04140d; box-shadow: 0 4px 20px rgba(37, 211, 102, 0.35);">
+              <i class="fa-brands fa-whatsapp" style="font-size: 1.2rem;"></i>
+              <span>Message +234 915 323 2839</span>
+            </a>
+          </div>
+
+          <!-- LinkedIn Direct Card -->
+          <div class="email-quick-card" style="border-color: rgba(10, 102, 194, 0.35); background: rgba(10, 25, 47, 0.55);">
+            <h4 style="display: flex; align-items: center; gap: 8px; color: #93c5fd;">
+              <i class="fa-brands fa-linkedin" style="font-size: 1.25rem; color: #38bdf8;"></i>
+              <span>LinkedIn Professional Network</span>
+            </h4>
+            <p>Connect with me on LinkedIn to view my career trajectory, endorsements, and professional updates:</p>
+            <a href="https://www.linkedin.com/in/noah-qudus-olayinka" target="_blank" rel="noopener noreferrer" class="btn-secondary" style="width: 100%; justify-content: center; background: rgba(10, 102, 194, 0.15); border-color: rgba(56, 189, 248, 0.4); color: #bae6fd;">
+              <i class="fa-brands fa-linkedin-in" style="font-size: 1.1rem; color: #38bdf8;"></i>
+              <span>Connect on LinkedIn</span>
+            </a>
+          </div>
+
+          <div class="email-quick-card">
+            <h4>Email Contact</h4>
+            <p>You can also send a direct email or click to copy my address:</p>
+            <div class="email-box">
+              <span class="email-text" id="emailText">noahqudus64@gmail.com</span>
+              <button class="copy-btn" id="copyEmailBtn" title="Copy to clipboard">
+                <i class="fa-regular fa-copy"></i>
+                <span id="copyBtnText">Copy</span>
+              </button>
+            </div>
+          </div>
+
+          <div class="email-quick-card">
+            <h4>Professional Profiles</h4>
+            <p>Explore my repositories and development activities:</p>
+            <div style="display: flex; gap: 12px; margin-top: 14px;">
+              <a href="https://github.com/Kenan06debug" target="_blank" rel="noopener noreferrer" class="social-link" title="GitHub">
+                <i class="fa-brands fa-github"></i>
+              </a>
+              <a href="https://www.linkedin.com/in/noah-qudus-olayinka" target="_blank" rel="noopener noreferrer" class="social-link" title="LinkedIn">
+                <i class="fa-brands fa-linkedin-in" style="color: #38bdf8;"></i>
+              </a>
+              <a href="https://wa.me/2349153232839" target="_blank" rel="noopener noreferrer" class="social-link" title="WhatsApp">
+                <i class="fa-brands fa-whatsapp" style="color: #25d366;"></i>
+              </a>
+              <a href="mailto:noahqudus64@gmail.com" class="social-link" title="Email">
+                <i class="fa-solid fa-envelope"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="contact-form-card">
+          <form id="contactForm">
+            <div class="form-group">
+              <label class="form-label" for="userName">Your Name</label>
+              <input type="text" id="userName" class="form-input" placeholder="e.g. Adeola Johnson" required>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="userEmail">Email Address</label>
+              <input type="email" id="userEmail" class="form-input" placeholder="e.g. adeola@example.com" required>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="userSubject">Subject</label>
+              <input type="text" id="userSubject" class="form-input" placeholder="Project Inquiry / Opportunity" required>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="userMessage">Your Message</label>
+              <textarea id="userMessage" class="form-textarea" placeholder="Describe your project, question, or proposal..." required></textarea>
+            </div>
+
+            <button type="submit" class="btn-primary" style="width: 100%; justify-content: center;">
+              <span>Send Message</span>
+              <i class="fa-regular fa-paper-plane"></i>
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Toast Notification -->
+  <div class="toast" id="toast">
+    <i class="fa-solid fa-circle-check" style="color: var(--emerald); font-size: 1.2rem;"></i>
+    <span id="toastMsg">Action completed successfully!</span>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div class="footer-copy">
+        &copy; <span id="currentYear"></span> Noah Qudus Olayinka (Kenan). Engineered with clean HTML, CSS &amp; JavaScript.
+      </div>
+      <a href="#home" class="back-to-top">
+        <span>Back to Top</span>
+        <i class="fa-solid fa-arrow-up"></i>
+      </a>
+    </div>
+  </footer>
+
+  <!-- Interactive JavaScript Logic -->
+  <script>
+    // Set dynamic current year in footer
+    document.getElementById('currentYear').textContent = new Date().getFullYear();
+
+    // Mobile Navigation Menu Toggle
+    const menuToggle = document.getElementById('menuToggle');
+    const navLinks = document.getElementById('navLinks');
+
+    menuToggle.addEventListener('click', () => {
+      navLinks.classList.toggle('active');
+      const icon = menuToggle.querySelector('i');
+      if (navLinks.classList.contains('active')) {
+        icon.classList.remove('fa-bars');
+        icon.classList.add('fa-xmark');
+      } else {
+        icon.classList.remove('fa-xmark');
+        icon.classList.add('fa-bars');
+      }
+    });
+
+    // Close mobile nav on link click
+    document.querySelectorAll('.nav-link').forEach(link => {
+      link.addEventListener('click', () => {
+        navLinks.classList.remove('active');
+        const icon = menuToggle.querySelector('i');
+        icon.classList.remove('fa-xmark');
+        icon.classList.add('fa-bars');
+      });
+    });
+
+    // Active Navigation Highlighting on Scroll
+    const sections = document.querySelectorAll('section');
+    const navItems = document.querySelectorAll('.nav-link');
+
+    window.addEventListener('scroll', () => {
+      let currentSection = '';
+      const scrollPos = window.pageYOffset + 150;
+
+      sections.forEach(section => {
+        const sectionTop = section.offsetTop;
+        const sectionHeight = section.clientHeight;
+        if (scrollPos >= sectionTop && scrollPos < sectionTop + sectionHeight) {
+          currentSection = section.getAttribute('id');
+        }
+      });
+
+      navItems.forEach(item => {
+        item.classList.remove('active');
+        if (item.getAttribute('href') === `#${currentSection}`) {
+          item.classList.add('active');
+        }
+      });
+    });
+
+    // Project Category Filtering
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    const projectCards = document.querySelectorAll('.project-card');
+
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        filterBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+
+        const filterValue = btn.getAttribute('data-filter');
+
+        projectCards.forEach(card => {
+          if (filterValue === 'all' || card.getAttribute('data-category') === filterValue) {
+            card.style.display = 'flex';
+          } else {
+            card.style.display = 'none';
+          }
+        });
+      });
+    });
+
+    // Toast Notification Utility
+    const toast = document.getElementById('toast');
+    const toastMsg = document.getElementById('toastMsg');
+    let toastTimeout;
+
+    function showToast(message) {
+      toastMsg.textContent = message;
+      toast.classList.add('show');
+      clearTimeout(toastTimeout);
+      toastTimeout = setTimeout(() => {
+        toast.classList.remove('show');
+      }, 3500);
+    }
+
+    // One-Click Email Copy to Clipboard using execCommand for sandbox reliability
+    const copyEmailBtn = document.getElementById('copyEmailBtn');
+    const copyBtnText = document.getElementById('copyBtnText');
+
+    copyEmailBtn.addEventListener('click', () => {
+      const email = 'noahqudus64@gmail.com';
+      const tempInput = document.createElement('input');
+      tempInput.value = email;
+      document.body.appendChild(tempInput);
+      tempInput.select();
+      
+      try {
+        document.execCommand('copy');
+        copyBtnText.textContent = 'Copied!';
+        showToast('Email address copied to clipboard!');
+        setTimeout(() => {
+          copyBtnText.textContent = 'Copy';
+        }, 2000);
+      } catch (err) {
+        showToast('Failed to copy. Email: noahqudus64@gmail.com');
+      }
+      document.body.removeChild(tempInput);
+    });
+
+    // Contact Form Submission Simulation
+    const contactForm = document.getElementById('contactForm');
+
+    contactForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const userName = document.getElementById('userName').value.trim();
+      showToast(`Thank you, ${userName}! Your message was sent successfully.`);
+      contactForm.reset();
+    });
+  </script>
+</body>
+</html>
